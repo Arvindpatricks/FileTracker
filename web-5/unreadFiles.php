@@ -70,7 +70,7 @@
 				<span class="menu"><img src="images/menu.png" alt=" " /></span>
 				<ul class="nav1">
 									<li><a href="./unreadFiles.php" data-toggle="modal" >Unread Files</a></li>
-				<li><a href="./updateFileStatus.php" data-toggle="modal" >Update File Status</a></li>
+				
 					<li><a href="#" data-toggle="modal" data-target="#myModal1">Reports</a></li>
 					<li><a href="./register/createRecord.php" data-toggle="modal" >Create A Record</a></li>
 					<li><a href="#" data-toggle="modal" >Logout</a></li>
@@ -106,10 +106,46 @@
 			
 			<div class="clearfix"> </div>
 	</div>
-	<div class="container">
-		<div class="banner-info">
-			<h3>PONDICHERRY UNIVERSITY FILE TRACKING SYSTEM</h3>
-		</div>
+	<div class="container"><center><br><br><br><br><br><br>
+	<table border="1" bgcolor="#00FF00">
+	<tr><th>File Id</th><th>Sender</th><th>Comment</th><th>Received Date </th><th>Received Time</th></tr>
+		  <?php 
+						  $servername = "localhost";
+						  $username = "root";
+						  $password = "root";
+						  $dbname = "file_tracking";
+						  
+						  
+						  // Create connection
+						  $conn = new mysqli($servername, $username, $password, $dbname);
+						  // Check connection
+						  if ($conn->connect_error) {
+						  	die("Connection failed: " . $conn->connect_error);
+						  }
+						  
+						  session_start();
+						  $name = $_SESSION['username'];
+						  
+						  $sql = "SELECT * FROM transaction where receiver='".$name."' and status='PROCESS'";
+						  $result = $conn->query($sql);
+						  
+						  if ($result->num_rows > 0) {
+						  	// output data of each row
+						  	while($row = $result->fetch_assoc()) {
+						  		echo"<tr>";
+						  			echo "<td>{$row['file_id']}</td>";
+						  		
+						  		echo "<td>{$row['sender']}</td>";
+						  		echo "<td>{$row['comment']}</td>";
+						  		echo "<td>{$row['received_date']}</td>";
+						  		echo "<td>{$row['received_time']}</td>";
+						  		echo "</tr>";
+						  	}
+						  
+						  }
+						  $conn->close();
+						  ?>
+						  </table></center>
 		
 	</div>
 </div>
