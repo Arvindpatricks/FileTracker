@@ -106,12 +106,17 @@
 			
 			<div class="clearfix"> </div>
 	</div>
-	<div class="container">
-		<div class="banner-info">
-			<h3>PONDICHERRY UNIVERSITY FILE TRACKING SYSTEM</h3>
-		</div>
+	<br><br><br><br>
+	<div class="container" align="center">
 		
-	</div>
+		<div class="mobile-right">
+		<form action="readUpdate.php" method="post">
+		<h2 style="color: #000000">Scan Bar Code to Change Status</h2><br><br>
+		<input name="file_id" style="color: #000000"  type="text" class="mobile-text" value="XXXXXXXXXXX" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="">
+		<br><br><br><input type="submit" value="I Have Read The File" />
+		</form>
+		</div>
+		</div>
 </div>
 
 
