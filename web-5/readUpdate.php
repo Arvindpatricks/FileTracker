@@ -10,25 +10,48 @@
 	    			if ($conn3->connect_error) {
 	    			die("Connection failed: " . $conn3->connect_error);
 	    			}
+	    			$sql5 ="SELECT status from transaction where file_id='".$file_id."' and receiver='".$_SESSION['username']."'";
 				$sql4 = "UPDATE transaction SET status='READ' where file_id='".$file_id."' and receiver='".$_SESSION['username']."'";
 	    		//echo 'sudsad';
 				//echo $sql4;
-				$res = $conn3->query($sql4);
+
+				$result = $conn3->query($sql5);
+				//echo $sql;
+				if ($result->num_rows > 0) {
+					$res=1;
+						
+				}
+				else{
+					$res=0;
+						
+				}
+				
+				
+				
+				$conn3->query($sql4);
+				//echo $res;
 	    				if($res==1){
-	    					
 	    					echo "<script>
-alert('Successfully updated the file status');
-window.location.href='./readUpdate.php';
+alert('Success');
+	    					
 </script>";
+	    					echo "document.location.href = './updateFileStatus.php'";
+	    					
+	    					
 	    					
 							//echo "sucess";
 							//echo "update_success()";
 	    					// alert here file file updates successfully	
 	    				}
-	    				else{				echo "<script>
-alert('This is not right place for you.. Go to right Place');
-window.location.href='./readUpdate.php';
+	    				else{	
+	    					echo "<script>
+alert('Wrong File Destination');
+	    					
 </script>";
+	    					echo "<script>document.location.href = './updateFileStatus.php'</script>";
+	    					
+	    					
+	    				 
 	    				}
 	    		$conn3->close();
 ?>
