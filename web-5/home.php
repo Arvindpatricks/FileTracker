@@ -71,7 +71,7 @@
 				<ul class="nav1">
 									<li><a href="./unreadFiles.php" data-toggle="modal" >Unread Files</a></li>
 				<li><a href="./updateFileStatus.php" data-toggle="modal" >Update File Status</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#myModal1">Reports</a></li>
+					<li><a href="./report.php" data-toggle="modal">Reports</a></li>
 					<li><a href="./register/createRecord.php" data-toggle="modal" >Create A Record</a></li>
 					<li><a href="#" data-toggle="modal" >Logout</a></li>
 				</ul>

@@ -107,10 +107,10 @@
 			<div class="clearfix"> </div>
 	</div>
 	<div class="container"><center><br><br><br><br><br><br>
-	<table border="1"  style="color:#fffff;border: 1px #2EFEC8;">
-	<tr style="background-color:#2EFEC8;color:white;"><th>File Id &nbsp </th><th>Sender &nbsp</th><th>Comment &nbsp</th><th>Received Date &nbsp</th><th>Received Time</th></tr>
-		  <?php 
-						  $servername = "localhost";
+	<table border="1" style="color:white;border: 2px #2EFEC8;">
+	<tr style="background-color:#2EFEC8;color:white;"><th>File Id &nbsp</th><th>Sender &nbsp</th><th>Receiver &nbsp</th><th>Comment &nbsp</th><th>Status</th></tr>
+		  <?php 		
+		  					$servername = "localhost";
 						  $username = "root";
 						  $password = "root";
 						  $dbname = "file_tracking";
@@ -125,29 +125,33 @@
 						  
 						  session_start();
 						  $name = $_SESSION['username'];
-						  
-						  $sql = "SELECT * FROM transaction where receiver='".$name."' and status='PROCESS'";
-						  $result = $conn->query($sql);
+						  $sql2 = "SELECT * FROM transaction where file_id='PDY_UNI1'";
+						  $result = $conn->query($sql2);
 						  
 						  if ($result->num_rows > 0) {
-						  	// output data of each row
-						  	while($row = $result->fetch_assoc()) {
-						  		echo"<tr>";
+						  // output data of each row
+						  while($row = $result->fetch_assoc()) {
+						  echo"<tr>";
+						  
 						  			echo "<td>{$row['file_id']}</td>";
-						  		
+						  
 						  		echo "<td>{$row['sender']}</td>";
-						  		echo "<td>{$row['comment']}</td>";
-						  		echo "<td>{$row['received_date']}</td>";
-						  		echo "<td>{$row['received_time']}</td>";
+						  		echo "<td>{$row['receiver']}</td>";
+						  		echo "<td>{$row['Comment']}</td>";
+						  		echo "<td>{$row['Status']}</td>";
 						  		echo "</tr>";
-						  	}
+						  }
 						  
 						  }
-						  $conn->close();
-						  ?>
+						  
+						  				  $conn->close();
+		?>
+		
 						  </table></center>
 		
-	</div>
+</div>
+
+	
 </div>
 
 
